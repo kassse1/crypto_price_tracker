@@ -5,7 +5,7 @@ celery_app = Celery(
     "app",
     broker=REDIS_URL,
     backend=REDIS_URL,
-    include=["app.tasks.fetch_prices"]  # 🔥 ВАЖНО
+    include=["app.tasks.fetch_prices"] 
 )
 
 celery_app.conf.beat_schedule = {
