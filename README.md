@@ -44,21 +44,24 @@
 
 ##  Installation & Run
 ```bash
-1️⃣ Запуск проекта
+Запуск проекта
 docker-compose up --build
 Будут запущены следующие сервисы:
 API (FastAPI)
 Celery worker + Celery beat
 PostgreSQL
 Redis
+
 1️⃣ Проверка периодического сбора данных
 Подождите 1–2 минуты после запуска.
 В логах Celery должно появиться:
 Task app.tasks.fetch_prices.fetch_prices succeeded
+
 2️⃣ Проверка базы данных
 docker exec -it crypto_price_tracker-db-1 psql -U postgres
 SELECT * FROM prices;
 Вы должны увидеть записи для btc_usd и eth_usd.
+
 3️⃣ Проверка API
 Swagger UI:
 http://localhost:8000/docs
