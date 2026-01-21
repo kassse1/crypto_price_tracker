@@ -4,7 +4,7 @@
 
 ---
 
-## 🚀 Features
+##  Features
 
 - Periodic price fetching (every minute)
 - Persistent price history storage
@@ -15,7 +15,7 @@
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 - **Python 3.11**
 - **FastAPI**
@@ -28,7 +28,7 @@
 
 ---
 
-## 🏗 Architecture
+##  Architecture
 
 Проект разделён на слои:
 
@@ -42,7 +42,7 @@
 
 ---
 
-## 📦 Installation & Run
+##  Installation & Run
 
 ### 1️⃣ Запуск проекта
 
@@ -58,7 +58,7 @@ PostgreSQL
 
 Redis
 
-🔎 How to verify the application works
+ How to verify the application works
 1️⃣ Проверка периодического сбора данных
 Подождите 1–2 минуты после запуска.
 
@@ -94,13 +94,13 @@ curl "http://localhost:8000/prices/latest?ticker=btc_usd"
 bash
 Копировать код
 curl "http://localhost:8000/prices/by-date?ticker=btc_usd&start=1700000000&end=1800000000"
-🧪 Run tests
+ Run tests
 Тесты запускаются внутри Docker-контейнера:
 
 bash
 Копировать код
 docker exec -it crypto_price_tracker-api-1 python -m pytest
-🧠 Design Decisions
+ Design Decisions
 Используются public endpoints Deribit API, так как получение index price не требует аутентификации.
 
 Данные сохраняются как временной ряд (append-only), без обновления существующих записей.
