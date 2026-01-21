@@ -43,70 +43,37 @@
 ---
 
 ##  Installation & Run
-
-### 1️⃣ Запуск проекта
-
 ```bash
+1️⃣ Запуск проекта
 docker-compose up --build
 Будут запущены следующие сервисы:
-
 API (FastAPI)
-
 Celery worker + Celery beat
-
 PostgreSQL
-
 Redis
-
- How to verify the application works
 1️⃣ Проверка периодического сбора данных
 Подождите 1–2 минуты после запуска.
-
 В логах Celery должно появиться:
-
-arduino
-Копировать код
 Task app.tasks.fetch_prices.fetch_prices succeeded
-2️⃣ Проверка базы данных (опционально)
-bash
-Копировать код
+2️⃣ Проверка базы данных
 docker exec -it crypto_price_tracker-db-1 psql -U postgres
-sql
-Копировать код
 SELECT * FROM prices;
 Вы должны увидеть записи для btc_usd и eth_usd.
-
 3️⃣ Проверка API
 Swagger UI:
-
-bash
-Копировать код
 http://localhost:8000/docs
 Получить все данные по валюте
-bash
-Копировать код
 curl "http://localhost:8000/prices?ticker=btc_usd"
 Получить последнюю цену
-bash
-Копировать код
 curl "http://localhost:8000/prices/latest?ticker=btc_usd"
 Получить цены за период
-bash
-Копировать код
 curl "http://localhost:8000/prices/by-date?ticker=btc_usd&start=1700000000&end=1800000000"
  Run tests
 Тесты запускаются внутри Docker-контейнера:
-
-bash
-Копировать код
 docker exec -it crypto_price_tracker-api-1 python -m pytest
  Design Decisions
 Используются public endpoints Deribit API, так как получение index price не требует аутентификации.
-
 Данные сохраняются как временной ряд (append-only), без обновления существующих записей.
-
 Последняя цена определяется как последняя вставленная запись (по id), что надёжнее, чем сортировка по timestamp.
-
 Внешний API может быть нестабилен, поэтому реализованы retry и timeout.
-
 Unit-тесты покрывают сервисный слой, где сосредоточена бизнес-логика.
