@@ -45,6 +45,7 @@
 ##  Installation & Run
 ```bash
 Запуск проекта
+cp .env.example .env   # задайте свой POSTGRES_PASSWORD (Windows: Copy-Item .env.example .env)
 docker-compose up --build
 Будут запущены следующие сервисы:
 API (FastAPI)
